@@ -9,15 +9,23 @@ namespace part_2
         static void Main(string[] args)
         {
             WriteLine("Enter n: ");
-            int n = int.Parse(ReadLine());
-            for (int i = 1; i <= n; i++)
-            {
-                if (IsItTrue(i))
-                {
-                    Write("Number {0} is ending of his square: {1}", i, i*i);
-                    WriteLine();
-                }
+            double n = double.Parse(ReadLine());
 
+            if ((n <= 0) || (n / n != 0))
+            {
+                WriteLine("n must be positive and integer");
+            }
+            else
+            {
+                for (int i = 1; i <= n; i++)
+                {
+                    if (IsItTrue(i))
+                    {
+                        Write("Number {0} is ending of his square: {1}", i, i * i);
+                        WriteLine();
+                    }
+
+                }
             }
         }
 

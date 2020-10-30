@@ -19,14 +19,24 @@ namespace part_1
             double a = Pow(x, z) + Log10(Abs(5 * x + y));
             double b = 1 / (a * a) + (Sqrt(x - y)) / z;
 
-            if ((5 * x + y == 0) || (z == 0) || (a == 0) || ((x < y) && (0 <= x)))
+            if (5 * x + y == 0)
             {
                 WriteLine("Your numbers are wrong. Please, change variable value.");
             }
+            else if (z == 0)
+            {
+                WriteLine("Z can't be 0");
+            }
+            else if (a == 0)
+            {
+                WriteLine("A can't be 0");
+            }
+            else if ((x < y) && (0 <= x))
+            {
+                WriteLine("Change your Y and/or X");
+            }
             else
             {
-
-
                 WriteLine("Number a : {0}", a);
                 WriteLine("Number b : {0}", b);
             }
