@@ -19,9 +19,9 @@ namespace part_1
             double a = Pow(x, z) + Log10(Abs(5 * x + y));
             double b = 1 / (a * a) + (Sqrt(x - y)) / z;
 
-            if (5 * x + y == 0)
+            if ((5 * x + y == 0) || (x < y))
             {
-                WriteLine("Your numbers are wrong. Please, change variable value.");
+                WriteLine("Change your Y or X");
             }
             else if (z == 0)
             {
@@ -30,10 +30,6 @@ namespace part_1
             else if (a == 0)
             {
                 WriteLine("A can't be 0");
-            }
-            else if (x < y) 
-            {
-                WriteLine("Change your Y or X");
             }
             else
             {
