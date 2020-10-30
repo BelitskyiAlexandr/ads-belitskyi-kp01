@@ -11,13 +11,13 @@ namespace part_2
             WriteLine("Enter n: ");
             double n = double.Parse(ReadLine());
 
-            if ((n <= 0) || (n / n != 0))
+            if ((n <= 0) || (n % 1 != 0))
             {
                 WriteLine("n must be positive and integer");
             }
             else
             {
-                for (int i = 1; i <= n; i++)
+                for (ulong i = 0; i <= n; i++)
                 {
                     if (IsItTrue(i))
                     {
@@ -31,9 +31,9 @@ namespace part_2
 
 
 
-        static int amount(int x)
+        static ulong amount(ulong x)
         {
-            int am = 0;
+            ulong am = 0;
             while (x > 0)
             {
                 am += 1;
@@ -43,10 +43,10 @@ namespace part_2
         }
 
 
-        static int nums(int x)
+        static ulong nums(ulong x)
         {
-            int nu = 1;
-            for (int i = 1; i <= x; i += 1)
+            ulong nu = 1;
+            for (ulong i = 1; i <= x; i += 1)
             {
                 nu = nu * 10;
             }
@@ -55,7 +55,7 @@ namespace part_2
 
 
 
-        static bool IsItTrue(int x)
+        static bool IsItTrue(ulong x)
         {
             if (x == (x * x) % nums(amount(x)))
             {
