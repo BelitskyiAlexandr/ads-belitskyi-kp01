@@ -31,9 +31,9 @@ namespace part_1
             {
                 WriteLine("A can't be 0");
             }
-            else if ((x < y) && (0 <= x))
+            else if (x < y) 
             {
-                WriteLine("Change your Y and/or X");
+                WriteLine("Change your Y or X");
             }
             else
             {
