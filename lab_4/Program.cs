@@ -244,7 +244,7 @@ namespace asd_list_single_linked_ring_head_pointer
         //удаление последнего элемента
         public void DeleteLast()
         {
-            if (head != null && head.next != null) // перевіряємо, чи містить список вузли та чи не є голова останнім вузлом
+            if (head != null && head.next != null) 
             {
                 Node current = head;
 
@@ -264,7 +264,7 @@ namespace asd_list_single_linked_ring_head_pointer
         //удаление первого элемента
         public void DeleteFirst()
         {
-            if (head != null && head.next != null) // перевіряємо, чи містить список вузли та чи не є голова останнім вузлом
+            if (head != null && head.next != null) 
             {
                 Node current = head;
                 head = current.next;
@@ -289,7 +289,7 @@ namespace asd_list_single_linked_ring_head_pointer
         }
 
 
-        public bool DeleteEvenPosition()        //redo
+        public bool DeleteEvenPosition()        
         {
             if (head == null) return false;
             Node current = head;
@@ -372,7 +372,7 @@ namespace asd_list_single_linked_ring_head_pointer
             {
                 WriteLine("Enter command: ");
                 string str = ReadLine();
-                if ((str == "") || (str == "End"))                                 //else unknown com
+                if ((str == "") || (str == "End"))                                
                 {
                     WriteLine("Ending processing...");
                     Environment.Exit(0);
