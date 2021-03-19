@@ -59,7 +59,7 @@ namespace lab_6
             return this.items.Take(this.count).GetEnumerator();
         }
     }
-    class PostfixNotationExpression
+    class PostfixNotationExpression                     // Магія. Не чіпати.
     {
         public PostfixNotationExpression()
         {
@@ -219,67 +219,90 @@ namespace lab_6
     }
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args)                                 // Коли я починав це писати, тільки Бог і я розуміли, що я роблю
         {
-            var RPN = new PostfixNotationExpression();
-            Console.WriteLine("Enter expression: ");
-            string expression = Console.ReadLine();
-            int isOpen = 0, isClose = 0;
-            for (int i = 0; i < expression.Length; i++)
+            Console.WriteLine("Enter mode (interactive/example): ");
+            string str = Console.ReadLine();
+            if (str == "interactive")
             {
-                char s = expression[i];
-                if (char.IsLetter(s))
+                var RPN = new PostfixNotationExpression();
+                Console.WriteLine("Enter expression: ");
+                string expression = Console.ReadLine();
+                int isOpen = 0, isClose = 0;
+                for (int i = 0; i < expression.Length; i++)
                 {
-                    Console.WriteLine("Error: example must not have letters");
-                    Environment.Exit(0);
-                }
-                else if (!((s == '+') || (s == '-') || (s == '/') || (s == '*') || (s == '(') || (s == ')') || char.IsDigit(s)))
-                {
-                    Console.WriteLine("Error: example must have only standart operations: '+', '-', '/', '*' and '(', ')'");
-                    Environment.Exit(0);
-                }
-                else if (s == '(')
-                {
-                    if (!((expression[i - 1] == '+') || (expression[i - 1] == '-') || (expression[i - 1] == '/') || (expression[i - 1] == '*')))
+                    char s = expression[i];
+                    if (char.IsLetter(s))
                     {
-                        Console.WriteLine("Error: check operand before '('");
+                        Console.WriteLine("Error: example must not have letters");
                         Environment.Exit(0);
                     }
-                    isOpen++;
+                    else if (!((s == '+') || (s == '-') || (s == '/') || (s == '*') || (s == '(') || (s == '^') || (s == ')') || char.IsDigit(s)))
+                    {
+                        Console.WriteLine("Error: example must have only standart operations: '+', '-', '/', '*' and '(', ')'");
+                        Environment.Exit(0);
+                    }
+                    else if (s == '(')
+                    {
+                        if (!((expression[i - 1] == '+') || (expression[i - 1] == '-') || (expression[i - 1] == '/') || (expression[i - 1] == '*')))
+                        {
+                            Console.WriteLine("Error: check operand before '('");
+                            Environment.Exit(0);
+                        }
+                        isOpen++;
+                    }
+                    else if (s == ')')
+                    {
+                        isClose++;
+                    }
+                    else if (int.TryParse(expression, out int num))
+                    {
+                        Console.WriteLine("Error: example must have more than one number");
+                        Environment.Exit(0);
+                    }
                 }
-                else if (s == ')')
+                if (isClose != isOpen)
                 {
-                    isClose++;
+                    if (isClose > isOpen)
+                    {
+                        Console.WriteLine("Error: you have ')' more than '(' ");
+                        Environment.Exit(0);
+                    }
+                    else if (isClose < isOpen)
+                    {
+                        Console.WriteLine("Error: you have '(' more than ')' ");
+                        Environment.Exit(0);
+                    }
                 }
-                else if (int.TryParse(expression, out int num))
-                {
-                    Console.WriteLine("Error: example must have more than one number");
-                    Environment.Exit(0);
-                }
-            }
-            if (isClose != isOpen)
-            {
-                if (isClose > isOpen)
-                {
-                    Console.WriteLine("Error: you have ')' more than '(' ");
-                    Environment.Exit(0);
-                }
-                else if (isClose < isOpen)
-                {
-                    Console.WriteLine("Error: you have '(' more than ')' ");
-                    Environment.Exit(0);
-                }
-            }
-            string[] RPNexpression = RPN.ConvertToPostfixNotation(expression);
+                string[] RPNexpression = RPN.ConvertToPostfixNotation(expression);
 
-            foreach (var item in RPNexpression)
-            {
-                Console.Write(item + " ");
+                foreach (var item in RPNexpression)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
+                Console.WriteLine("Result: {0}", RPN.result(expression));
             }
-            Console.WriteLine();
-            Console.WriteLine("Result: {0}", RPN.result(expression));
+            else if (str == "example")
+            {
+                string example = "5+5-4*2/(8-2^2)";
+                Console.WriteLine("Example: {0}", example);
+                
+                var RPN = new PostfixNotationExpression();
+                string[] RPNexpression = RPN.ConvertToPostfixNotation(example);
+
+                Console.Write("Notation in postfix form: ");
+                foreach (var item in RPNexpression)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
+                Console.WriteLine("Result: {0}", RPN.result(example));
+            }
+            else 
+            {
+                Console.WriteLine("Error: check the correctness name of mode");
+            }
         }
-
-
     }
-}
+}                                               // Зараз залишився тільки Бог
