@@ -77,7 +77,7 @@ public class HashTableAuthors
         {
             Console.WriteLine($"`HashtableAuthors` Tip: Loadness factor is `{loadness}` but recomended is `< 0.5`. Resize...");
         }
-        else if (sizeAllNonNull > size)
+        else if (sizeAllNonNull > size * 2)
         {
             Console.WriteLine($"`HashtableAuthors` Tip: Number of deleted elements is too much. Rehashing...");
             Rehashing();

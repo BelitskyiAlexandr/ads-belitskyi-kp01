@@ -43,7 +43,7 @@ public class Hashtable : HashInterface
         {
             Console.WriteLine($"`Hashtable` Tip: Loadness factor is `{loadness}` but recomended is `< 0.5`. Resize...");
         }
-        else if (sizeAllNonNull > size)
+        else if (sizeAllNonNull > size * 2)
         {
             Console.WriteLine($"`Hashtable` Tip: Number of deleted elements is too much. Rehashing...");
             Rehashing();
